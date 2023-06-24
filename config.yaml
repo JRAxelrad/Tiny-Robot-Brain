@@ -1,0 +1,19 @@
+position: 5.0
+num_motors: 5
+desired_net_function: set_motors_to_different_directions
+net_functions:
+  my_net_function:
+    module: net_functions
+    function: set_motors_to_zero
+  move_to_position_5:
+    module: net_functions
+    function: move_motors_to_position_5
+  block_excessive_position:
+    module: net_functions
+    function: block_excessive_positions
+  set_motors_to_different_directions:
+    module: net_functions
+    function: set_motors_to_different_directions
+  advance_regularly:
+    module: net_functions
+    function: advance_regularly
