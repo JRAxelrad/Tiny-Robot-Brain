@@ -2,7 +2,7 @@ position: 5.0
 num_motors: 5
 desired_net_function: set_motors_to_different_directions
 net_functions:
-  my_net_function:
+  set_motors_to_zero:
     module: net_functions
     function: set_motors_to_zero
   move_to_position_5:

@@ -16,7 +16,7 @@ namespace py = pybind11;
 class PositionLoop {
 public:
     PositionLoop(float position_) : position(position_) {
-        YAML::Node config = YAML::LoadFile("/home/jraxelrad/Documents/cppProj/config.yaml");
+        YAML::Node config = YAML::LoadFile("../config.yaml");
 
         position = config["position"].as<float>();}
 
@@ -50,7 +50,7 @@ private:
 class MotorsLoop {
 public:
     MotorsLoop(int numOfMotors_) : numOfMotors(numOfMotors_) {
-        YAML::Node config = YAML::LoadFile("/home/jraxelrad/Documents/cppProj/config.yaml");
+        YAML::Node config = YAML::LoadFile("../config.yaml");
 
         numOfMotors = config["num_motors"].as<float>();
         motorsPositions.resize(numOfMotors, 0.1);}
@@ -164,14 +164,16 @@ public:
                 std::cout << "Factory object is available: " << netFunctionName << std::endl;
 
                 // Use switch-case based on netFunctionName
-                if (netFunctionName == "my_net_function") {
+                if (netFunctionName == "set_motors_to_zero") {
                     motorsLoop->setMotorsToZero();
+                    positionLoop->setPosition(0.0);
                 } 
                 else if (netFunctionName == "set_motors_to_different_directions") {
                     motorsLoop->setMotorsToDifferentDirections();
                 } 
                 else if (netFunctionName == "move_motors_to_position_5"){
                     motorsLoop->setMotorsPosition(5.0);
+                    positionLoop->setPosition(0.0);
                 }
                 else if (netFunctionName == "block_excessive_positions"){
                     motorsLoop->blockExcessivePositions();
